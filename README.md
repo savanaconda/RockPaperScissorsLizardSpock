@@ -2,14 +2,14 @@
 
 
 ## Description
-This is a back end server which is used to play the game Rock, Paper, Scissors, Lizard, Spock.
+This is a back-end server which is used to play the game Rock, Paper, Scissors, Lizard, Spock.
 
 <img src="https://github.com/savanaconda/RockPaperScissorsLizardSpock/blob/master/rockpaperscissorslizardspock.png" width="400">
 
 The rules for this game can be found at:
 http://www.samkass.com/theories/RPSSL.html
 
-The game is played when the user picks on of the five choices, using the front-end interface. The computer randomnly selects an option, and the user is told what the computer selected and if the user won, lost, or tied the computer.
+The game is played when the user picks one of the five choices, using the front-end interface. The computer randomly selects an option, a winner is chosen, and the user is told what the computer selected and if the user won, lost, or tied the computer.
 
 The front-end interface is located at:
 https://codechallenge.boohma.com/ 
@@ -25,10 +25,10 @@ Choices returns the 5 game choices (rock, paper, scissors, lizard, and spock) vi
 ```
 
 ### Choice
-Choice returns a randomnly selected choice, which is used as the computer's choice in the game play. This is also done via an HTTP GET. A random number is received from https://codechallenge.boohma.com/random and one of the five choices is selected based on this random number. The output is the same format as that shown above in Choices.
+Choice returns a randomly selected choice, which is used as the computer's choice in the game play. This is also done via an HTTP GET. A random number is received from https://codechallenge.boohma.com/random and one of the five choices is selected based on this random number. The output is the same format as that shown above in Choices.
 
 ### Play
-The play command takes the user choice from the front-end server, compares that to the randomnly generated computer choice, and returns the results to the user. The data format is as such:
+The play command takes the user choice from the front-end server, compares that to the randomly generated computer choice, and returns the results to the user. The data format is as such:
 ```
 {"results": "win", "player": 1, "computer": 4}
 ```
