@@ -45,6 +45,8 @@ Test machine should have Python 3.7.2 installed, as well as the following python
  * flask-cors
  * requests
  * math
+ * collections
+ * os
 
 The back-end server __RSPLS_game.py__ can be downloaded from this Github repo. The front-end application will be accessed via https://codechallenge.boohma.com/.
 
