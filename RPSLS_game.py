@@ -2,9 +2,13 @@ from flask import Flask, render_template, jsonify, Response, request, abort
 from flask_cors import CORS
 import requests
 import math
+import collections
+import os
 
 RANDOM_MAX = 100
 RANDOM_URL = "https://codechallenge.boohma.com/random"
+SCOREBOARDFILE = "./scoreboard.txt"
+SCOREBOARD = collections.deque([""], 10)
 
 # Note: If ID assignments are reassigned in front end, they must
 # also be fixed here to preserve functionality
@@ -61,10 +65,28 @@ def playRPSLS(choiceID):
 
 	result = getGameResult(userChoice, compChoice)
 
+	updateScoreboard(userChoice, compChoice, result)
+
 	return formatResults(result, userChoice, compChoice)
 
+def updateScoreboard(userChoice, compChoice, result):
+	# Converts datat to html format and scores in file
+	# to be read and posted
 
+	SCOREBOARD.appendleft([userChoice["name"], compChoice["name"], result])
 
+	with open(SCOREBOARDFILE, 'w') as sb:
+		sb.write("<h3>Most Recent Games</h3>\n")
+		scoresList = list(SCOREBOARD)
+		html = '<table>'
+		html += '<tr><th>User</th><th>Computer</th><th>Result</th></tr>\n'
+		for entry in scoresList:
+			html += '<tr>'
+			for val in entry:
+				html += '<td>%s</td>' % val
+			html += '</tr>\n'
+		html += '<table>'
+		sb.write(html)
 
 
 app = Flask(__name__)
@@ -92,7 +114,18 @@ def play():
 
 	choiceID = data["player"]
 
-	return jsonify(playRPSLS(choiceID))
+	result = playRPSLS(choiceID)
+
+	return jsonify(result)
+
+@app.route("/scoreboard", methods = ["GET"])
+def getScoreboard():
+	if(os.path.exists(SCOREBOARDFILE)):
+		scoreBFile = open(SCOREBOARDFILE,"r")
+		scores = scoreBFile.read()
+		return scores
+	return "No Scores Yet"
+
 
 
 
