@@ -68,6 +68,11 @@ Once the server starts, you should see the following output in the console:
 To use the front-end interface, navigate to https://codechallenge.boohma.com/ and paste the address http://127.0.0.1:5000 into the root URL field. Step through the game by following the instructions on the front-end page. As HTTP requests are made, status codes can be monitored in the output in the console.
 
 
+## Scoreboard
+Once the server has been started, a scoreboard of the 10 most recent runs can be accessed at http://127.0.0.1:5000/scoreboard.
+
+
 ## Resources
 1. http://flask.palletsprojects.com/en/1.1.x/
 2. https://flask-cors.readthedocs.io/en/latest/
+3. https://www.w3schools.com/tags/tag_table.asp
